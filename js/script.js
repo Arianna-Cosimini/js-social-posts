@@ -51,10 +51,11 @@ const posts = [
         id: 4,
         author: {
             name: "Giulia Colombo",
-            photo: "https://picsum.photos/id/1030/100/100",
+            photo: "https://picsum.photos/id/1031/100/100",
         },
         date: "02-12-2024",
         text: "Suspendisse potenti. Cras ullamcorper massa sit amet lacus egestas, ac ultricies nisi tincidunt. Nunc accumsan, libero eget feugiat mollis, risus mi porta dui, eget lacinia neque libero eget neque.",
+        image:"",
         likes: 18,
     },
 
@@ -82,7 +83,7 @@ posts.forEach(function (currentArray) {
 
     cardElement.innerHTML += `
 
-    <div class="card p-4">
+    <div class="card p-4 mb-5">
             <div class="author d-flex gap-3 align-items-center mb-4">
             <div class="photo-author">
                 <img src="${currentArray.author.photo}" alt="">
