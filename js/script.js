@@ -19,7 +19,7 @@ const posts = [
         id: 1,
         author: {
             name: "Giorgio Ferraro",
-            photo: "https://picsum.photos/id/1025/100/100",
+            photo: "https://picsum.photos/id/1026/100/100",
         },
         date: "02-15-2024",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Donec ultrices lacus sed neque ultricies, eu tincidunt nisi tristique.",
@@ -40,7 +40,7 @@ const posts = [
         id: 3,
         author: {
             name: "Luca Verdi",
-            photo: "https://picsum.photos/id/1028/100/100",
+            photo: "https://picsum.photos/id/1029/100/100",
         },
         date: "02-13-2024",
         text: "Proin eget tortor risus. Sed egestas, ante et ullamcorper tincidunt, nisl leo feugiat nibh, sed pulvinar neque leo ac lectus.",
@@ -51,11 +51,10 @@ const posts = [
         id: 4,
         author: {
             name: "Giulia Colombo",
-            photo: "https://picsum.photos/id/1031/100/100",
+            photo: "https://picsum.photos/id/1032/100/100",
         },
         date: "02-12-2024",
         text: "Suspendisse potenti. Cras ullamcorper massa sit amet lacus egestas, ac ultricies nisi tincidunt. Nunc accumsan, libero eget feugiat mollis, risus mi porta dui, eget lacinia neque libero eget neque.",
-        image:"",
         likes: 18,
     },
 
@@ -71,23 +70,32 @@ esempio presente nell'html, stampiamo i post del nostro feed
 
 
 */
-
+ // Array per memorizzare gli ID dei post piaciuti
+let likedPostIds = [];
 
 // Bersaglio la card
 
 let cardElement = document.querySelector(".container");
-
+cardElement.innerHTML = "";
 // creo ciclo forEach per stampare in pagina le proprietà 
 
 posts.forEach(function (currentArray) {
+    const newPost = document.createElement("div");
 
-    cardElement.innerHTML += `
+    newPost.innerHTML =
 
-    <div class="card p-4 mb-5">
+    
+
+  `  
             <div class="author d-flex gap-3 align-items-center mb-4">
+
+            
             <div class="photo-author">
                 <img src="${currentArray.author.photo}" alt="">
-            </div>
+                </div>
+        
+
+            
 
             <div class="name-author d-flex flex-column">
                 <h3>${currentArray.author.name}</h3>
@@ -106,15 +114,45 @@ posts.forEach(function (currentArray) {
         </div>
 
         <div class="button-card d-flex justify-content-around">
-            <div class="btn btn-outline-light border border-0 text-black"><i class="fa-solid fa-thumbs-up pe-2"></i>Mi piace</div>
-            <div class="btn btn-outline-light border border-0 text-black">Piace a ${currentArray.likes} persone</div>
+            <div class="btn btn-like btn-outline-light border border-0 text-black" data-postid="${currentArray.id}"><i class="fa-solid fa-thumbs-up pe-2"></i>Mi piace</div>
+            <div id="n-likes-${currentArray.id}" class="btn btn-outline-light border border-0 text-black">Piace a ${currentArray.likes} persone</div>
         </div>
+            `;
+
+    newPost.className = "card p-4 mb-5"
+
+    cardElement.append(newPost)
+    
+
+    // Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo 
+    // del bottone e incrementiamo il counter dei likes relativo.
+    //  Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+    // Seleziona tutti i pulsanti "Mi piace"
+    let likeButtons = document.querySelector(`.btn[data-postid = "${currentArray.id}"]`);
+    console.log(likeButtons)
+   
+    
+    
+    // Aggiungo un gestore di eventi clic a ciascun pulsante "Mi piace"
+    
+        likeButtons.addEventListener('click', function() {
             
+            if(! likedPostIds.includes(currentArray.id)){
+                likedPostIds.push(currentArray.id);
+
+
+                
+            }
     
-    </div>
-    
-    `
-    console.log(currentArray)
+            
+            console.log(likedPostIds)
+        });
 });
+
+
+
+
+
 
 
