@@ -60,7 +60,6 @@ const posts = [
 
 ];
 
-console.log(posts)
 
 
 /*
@@ -114,8 +113,8 @@ posts.forEach(function (currentArray) {
         </div>
 
         <div class="button-card d-flex justify-content-around">
-            <div class="btn btn-like btn-outline-light border border-0 text-black" data-postid="${currentArray.id}"><i class="fa-solid fa-thumbs-up pe-2"></i>Mi piace</div>
-            <div id="n-likes-${currentArray.id}" class="btn btn-outline-light border border-0 text-black">Piace a ${currentArray.likes} persone</div>
+            <div class="btn btn-like btn-outline-light border border-0" data-postid="${currentArray.id}"><i class="fa-solid fa-thumbs-up pe-2"></i>Mi piace</div>
+            <div id="n-likes-${currentArray.id}" class="btn btn-outline-light border border-0">Piace a ${currentArray.likes} persone</div>
         </div>
             `;
 
@@ -130,7 +129,6 @@ posts.forEach(function (currentArray) {
 
     // Seleziona tutti i pulsanti "Mi piace"
     let likeButtons = document.querySelector(`.btn[data-postid = "${currentArray.id}"]`);
-    console.log(likeButtons)
    
     
     
@@ -141,12 +139,16 @@ posts.forEach(function (currentArray) {
             if(! likedPostIds.includes(currentArray.id)){
                 likedPostIds.push(currentArray.id);
 
+                // aggiungo classe al btn-like
 
-                
+                likeButtons.classList.add("clicked");
+    
+
+
             }
     
             
-            console.log(likedPostIds)
+            
         });
 });
 
