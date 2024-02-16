@@ -143,8 +143,13 @@ posts.forEach(function (currentArray) {
 
                 likeButtons.classList.add("clicked");
     
+                // aumento i likes
+                currentArray.likes++
+                
+                // mostro i like aggiornati
 
-
+                const newLikes = document.querySelector(`#n-likes-${currentArray.id}`);
+                newLikes.innerHTML = `Piace a ${currentArray.likes} persone`
             }
     
             
